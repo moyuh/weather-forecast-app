@@ -1,0 +1,2 @@
+// START GLOBAL VARIABLES //
+
