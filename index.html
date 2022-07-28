@@ -8,17 +8,17 @@
     <title>Weather this Together</title>
 </head>
 <body>
-    <header class="heading">🌩 Weather this together 🌩<h1>☀️ The Weather Dashboard Application ☀️</h1>
+    <header class="heading">🌩 Weather this together 🌩<h3>☀️ The Weather Dashboard Application ☀️</h3>
     </header>
     
     <main id='container' class="container">
         <div class="row">
             <div class="column1">
                 <div id='search-area'>
-                    <h1 class='h1'>Search by City:</h1>
+                    <h1>Search by City:</h1>
                     <form id='city-search'>
-                        <input name='city' type="text" placeholder="Denver" id='city' autofocus='true'
-                            class='city-input' />
+                        <input name='city' type="text" placeholder="Denver" id='input-city' autofocus='true'
+                            class='city' />
                         <button type="submit" id='search-btn' class='btn'>Search</button>
                     </form>
                     <br>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="column2">
-                <div id='forecast' class='row spacebetween'></div>
+                <div id='forecast' class='row forecast'></div>
             </div>
         </div>
     </main>

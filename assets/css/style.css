@@ -1,3 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 24px;
+}
+
+.forecast{
+    justify-content: space-around;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column1 {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.column2 {
+    width: 65%;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+.column3 {
+    width: 18%;  
+}
+
 header {
     text-align: center;
     padding-top: 5px;
@@ -5,8 +41,112 @@ header {
     background-color: rgb(177, 75, 75);
     background-image: linear-gradient(90deg, rgb(177, 75, 75) 13%, rgb(167, 35, 35) 42%, rgb(105, 1, 1) 80%);
     color:white;
-    font-size: 4rem;
+    font-size: 48px;
     font-weight: bold;
 }
 
+h1 {
+    font-weight: bold;
+    margin: 20% auto;
+}
 
+h2 {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+}
+
+#input-city {
+    width: fit-content;
+    border-radius: 2px;
+    border: 2px solid black;
+    height: fit-content;
+    padding-bottom: 3px;
+    padding-top: 0px;
+    padding-left: 1px;
+}
+
+
+#search-btn {
+    margin-bottom: 5px;
+    background-color: #6699ff;
+    color: white;
+}
+
+
+.btn {
+    width: fit-content;
+    background-color: lightgrey;
+    color: black;
+    border: none;
+    border-radius: 3px;
+    margin-top: 2px;
+    padding: 3px 0;
+}
+
+#current-weather {
+    height: 50%;
+    border: 2px solid black;
+}
+
+ul {
+    list-style-type: none;
+    font-weight: bold;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 1%;
+}
+#current-weather-icon {
+    filter: drop-shadow(0 0 0.75rem grey);
+}
+
+.favorable {
+    background-color: green;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.moderate {
+    background-color: yellow;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.severe {
+    background-color: red;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+span {
+    padding: 0 3px;
+    color: white;
+}
+
+h3 {
+    font-weight: bold;
+    color: white;
+}
+
+.card-body {
+    background-color:#00334d;
+    height: fit-content;
+    padding-left: 4%;
+    padding-top: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+p {
+    color: white;
+}
+
+#five-day-header {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
