@@ -115,7 +115,7 @@ function getWeather(city) {
                     src: iconURl + forecastIcon + ".png",
                     alt: "Weather Image",
                   });
-                   
+
                   let temp = $("<p>")
                     .addClass("card-text")
                     .text("Temperature: " + weatherData.daily[i].temp.max);
