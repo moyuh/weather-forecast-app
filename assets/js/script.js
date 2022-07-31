@@ -6,6 +6,7 @@ let currentDay = moment().format("M/DD/YYYY");
 let apiKey = "8cbc334acb287238dc75bb0e902ac44d";
 let weatherURL = "https://api.openweathermap.org/data/3.0/onecall?lat=";
 let coordinatesURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
+let iconURl = "https://openweathermap.org/img/w/"
 let forcastSection = $(".column2");
 let cityInput = $("#input-city");
 let forecast = $("#forecast");
@@ -23,8 +24,8 @@ function getWeather(city) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          let cityLat = data.lat;
-          let cityLong = data.lon;
+          let cityLat = data[0].lat;
+          let cityLong = data[0].lon;
           let apiweatherURL = weatherURL + cityLat + "&lon=" + cityLong + "&appid=" + apiKey +"&units=imperial";
 
           fetch(apiweatherURL)
@@ -38,30 +39,32 @@ function getWeather(city) {
                 let currentWeatherHeader = $("<h2>").text(
                   city + "(" + currentDay + ")"
                 );
-                // let iconImg = $("<img>").attr({
-                //   id: "current-weather-icon",
-                //   src: cityCurrentIcon,
-                //   alt: "Current Weather Icon",
-                // });
+                let iconImg = $("<img>").attr({
+                  id: "current-weather-icon",
+                  src: iconURl + weatherIcon + ".png",
+                  alt: "Current Weather Icon",
+                });
                 let currentWeatherList = $("<ul>");
                 let currentWeatherDetails = [
                   "Temperature: " + weatherData.current.temp + " °F",
                   "Winds: " +
                     weatherData.current.wind_speed +
-                    " MPH" +
+                    " MPH",
                     "Humidity: " +
                     weatherData.current.humidity +
-                    "%" +
+                    "%" ,
                     "UV Index: " +
                     weatherData.current.uvi,
                 ];
                 for (let i = 0; i < currentWeatherDetails.length; i++) {
+                  let listItem = $("<li>").text(currentWeatherDetails[i]);
+                  currentWeatherList.append(listItem);
                   if (
                     currentWeatherDetails[i] ===
                     "UV Index: " + weatherData.current.uvi
                   ) {
-                    let listItem = $("<li>").text("UV Index: ");
-                    currentWeatherList.append(listItem);
+                    let listItems = $("<li>").text("UV Index: ");
+                    currentWeatherList.append(listItems);
                     let uviItem = $("<i>").text(weatherData.current.uvi);
                     if (uviItem.text() <= 2) {
                       uviItem.addClass("favorable");
@@ -70,16 +73,17 @@ function getWeather(city) {
                     } else {
                       uviItem.addClass("severe");
                     }
-                    listItem.append(uviItem);
+                    listItems.append(uviItem);
                   } else {
                     let listItem = $("<li>").text(currentWeatherDetails[i]);
                     currentWeatherList.append(listItem);
                   }
+                 
                 }
                 $("forecast").before(currentWeather);
                 currentWeather.append(currentWeatherHeader);
                 currentWeatherHeader.append(iconImg);
-                currentWeather.append(listItem);
+                currentWeather.append(currentWeatherList);
 
                 var fiveDayHeader = $("<h2>").text("5 day Forecast:").attr({
                   id: "five-day-header",
@@ -91,7 +95,7 @@ function getWeather(city) {
                 for (let i = 0; i < 5; i++) {
                   let forecastDate = moment()
                     .add(i + 1, "days")
-                    .format("M/DD.YYYY");
+                    .format("M/DD/YYYY");
                   forecastArr.push(forecastDate);
                 }
                 for (let i = 0; i < forecastArr.length; i++) {
@@ -106,7 +110,7 @@ function getWeather(city) {
                   let forecastIcon = weatherData.daily[i].weather[0].icon;
 
                   let forecastIconAdd = $("<img>").attr({
-                    src: weatherIcon + forecastIcon + ".png",
+                    src: iconURl + forecastIcon + ".png",
                     alt: "Weather Image",
                   });
 
@@ -133,6 +137,10 @@ function getWeather(city) {
                   let humidity = $("<p>")
                     .addClass("card-text")
                     .text("Humidity " + weatherData.daily[i].humidity + "%");
+
+                  let uvi = $("<p>")
+                    .addClass("card-text")
+                    .text("UV Index " + weatherData.daily[i].uvi)
                   forecast.append(createCard);
                   createCard.append(cardBody);
                   cardBody.append(cardTitle);
@@ -140,6 +148,7 @@ function getWeather(city) {
                   cardBody.append(temp);
                   cardBody.append(wind);
                   cardBody.append(humidity);
+                  cardBody.append(uvi); 
                 }
               });
             }
@@ -149,10 +158,7 @@ function getWeather(city) {
         alert("Unable to find city");
       }
     })
-    .catch(function (error) {
-      alert("Server Down, please try again later");
-    });
-}
+};
 
 //display cities from the local storage and create history buttons
 function loadSearch() {
@@ -167,11 +173,11 @@ function loadSearch() {
     }
   }
   return searchHistAry;
-}
+};
 //save the chosen city to local storage
 function saveCity() {
   localStorage.setItem("search history", JSON.stringify(searchHistAry));
-}
+};
 //create the city buttons from history
 function historyBtn(city) {
   var srchHistBtn = $("<button>")
@@ -187,7 +193,7 @@ function historyBtn(city) {
       type: "button",
     });
   searchHist.append(srchHistBtn);
-}
+};
 
 //function based on form- gets the value from the form and prevents searches that are stored in local sorage
 function citySearchBtn(event) {
@@ -212,7 +218,7 @@ function citySearchBtn(event) {
   } else {
     alert("Please enter a city");
   }
-}
+};
 //SPECIAL FUNCTIONS && CALL FUNCTIONS
 // when the user enters the city get the info and get API data
 formSearch.on("submit", citySearchBtn);
