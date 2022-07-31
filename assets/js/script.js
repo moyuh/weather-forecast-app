@@ -12,6 +12,7 @@ let cityInput = $("#input-city");
 let forecast = $("#forecast");
 let searchHist = $("#search-history");
 let formSearch = $("#city-search");
+let current = $(".current")
 
 let searchHistAry = loadSearch();
 
@@ -35,6 +36,7 @@ function getWeather(city) {
                 let currentWeather = $("<div>").attr({
                   id: "current-weather",
                 });
+                current.append(currentWeather);
                 let weatherIcon = weatherData.current.weather[0].icon;
                 let currentWeatherHeader = $("<h2>").text(
                   city + "(" + currentDay + ")"
@@ -59,6 +61,7 @@ function getWeather(city) {
                 for (let i = 0; i < currentWeatherDetails.length; i++) {
                   let listItem = $("<li>").text(currentWeatherDetails[i]);
                   currentWeatherList.append(listItem);
+                  
                   if (
                     currentWeatherDetails[i] ===
                     "UV Index: " + weatherData.current.uvi
@@ -78,12 +81,11 @@ function getWeather(city) {
                     let listItem = $("<li>").text(currentWeatherDetails[i]);
                     currentWeatherList.append(listItem);
                   }
-                 
                 }
                 $("forecast").before(currentWeather);
                 currentWeather.append(currentWeatherHeader);
                 currentWeatherHeader.append(iconImg);
-                currentWeather.append(currentWeatherList);
+                current.append(currentWeatherList);
 
                 var fiveDayHeader = $("<h2>").text("5 day Forecast:").attr({
                   id: "five-day-header",
@@ -113,19 +115,7 @@ function getWeather(city) {
                     src: iconURl + forecastIcon + ".png",
                     alt: "Weather Image",
                   });
-
-                  let currentWeatherDetails = [
-                    "Temperature: " + weatherData.current.temp + " °F",
-                    "Winds: " +
-                      weatherData.current.wind_speed +
-                      " MPH" +
-                      "Humidity: " +
-                      weatherData.current.humidity +
-                      "%" +
-                      "UV Index: " +
-                      weatherData.current.uvi,
-                  ];
-
+                   
                   let temp = $("<p>")
                     .addClass("card-text")
                     .text("Temperature: " + weatherData.daily[i].temp.max);
