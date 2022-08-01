@@ -5,7 +5,7 @@ let currentDay = moment().format("M/DD/YYYY");
 
 let apiKey = "8cbc334acb287238dc75bb0e902ac44d";
 let weatherURL = "https://api.openweathermap.org/data/3.0/onecall?lat=";
-let coordinatesURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
+let coordinatesURL = "https://api.openweathermap.org/geo/1.0/direct?q=";
 let iconURl = "https://openweathermap.org/img/w/"
 let forcastSection = $(".column2");
 let cityInput = $("#input-city");
