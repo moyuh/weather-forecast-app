@@ -59,26 +59,27 @@ function getWeather(city) {
                     weatherData.current.uvi,
                 ];
                 for (let i = 0; i < currentWeatherDetails.length; i++) {
-                  let listItem = $("<li>").text(currentWeatherDetails[i]);
-                  currentWeatherList.append(listItem);
-                  
                   if (
                     currentWeatherDetails[i] ===
                     "UV Index: " + weatherData.current.uvi
                   ) {
                     let listItems = $("<li>").text("UV Index: ");
-                    currentWeatherList.append(listItems);
+                    currentWeatherList.append(listItems)
+                    listItems.addClass("list");
                     let uviItem = $("<i>").text(weatherData.current.uvi);
                     if (uviItem.text() <= 2) {
                       uviItem.addClass("favorable");
+                      
                     } else if (uviItem.text() > 2 && uviItem.text() <= 7) {
                       uviItem.addClass("moderate");
+                      
                     } else {
                       uviItem.addClass("severe");
+                     
                     }
                     listItems.append(uviItem);
                   } else {
-                    let listItem = $("<li>").text(currentWeatherDetails[i]);
+                    let listItem = $("<li>").text(currentWeatherDetails[i])
                     currentWeatherList.append(listItem);
                   }
                 }
@@ -91,7 +92,7 @@ function getWeather(city) {
                   id: "five-day-header",
                 });
 
-                $("#current-weather").after(fiveDayHeader);
+                $(".list").after(fiveDayHeader);
 
                 let forecastArr = [];
                 for (let i = 0; i < 5; i++) {

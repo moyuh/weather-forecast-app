@@ -10,7 +10,7 @@
 }
 
 body{
-    background-color: slategrey;
+    background-color: rgb(67, 67, 67);
     color:white;
 }
 
@@ -44,7 +44,7 @@ header {
     padding-top: 5px;
     padding-bottom: 10px;
     background-color: rgb(177, 75, 75);
-    background-image: linear-gradient(90deg, rgb(177, 75, 75) 13%, rgb(167, 35, 35) 42%, rgb(105, 1, 1) 80%);
+    background-image: linear-gradient(90deg, rgb(137, 75, 75) 13%, rgb(93, 22, 22) 42%,  #4d0000 80%);
     color:white;
     font-size: 48px;
     font-weight: bold;
@@ -75,7 +75,7 @@ h2 {
 
 #form-search {
     margin-bottom: 5px;
-    background-color: #6699ff;
+    background-color:  #4d0000;
     color: white;
 }
 
@@ -95,17 +95,22 @@ h2 {
     border: 2px solid black;
 }
 
-ul {
+ul  {
     list-style-type: none;
     font-weight: bold;
     height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-left: 1%;
+    margin: 3%;
 }
-#current-weather-icon {
-    filter: drop-shadow(0 0 0.75rem grey);
+
+#search-history{
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 5%;
+    margin-right: 50%;
+    flex-wrap: nowrap;
 }
 
 .favorable {
@@ -145,6 +150,7 @@ h3 {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
+    border: 2px solid white;
 }
 
 p {
@@ -156,7 +162,9 @@ p {
     margin-bottom: 1%;
 }
 
-.current{
-    background-color: white;
-    color:black;
+.current{ 
+    background-color:#4d0000;
+    color: white;
+    margin: auto;
+    border: 2px solid white;
 }
